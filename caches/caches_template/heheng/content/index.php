@@ -4,19 +4,56 @@
             <div class="bd">
                 <ul>
 
-                    <li><a href="news.html">重要通知：现在，鹿光的脚步不止于此。遵循“至繁归于至简”的核心理念...</a></li>
+                    <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=e1ffe6d184cf512d376ef9df1d222913&action=position&posid=18&order=listorder+ASC&num=6\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">修改</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'position')) {$data = $content_tag->position(array('posid'=>'18','order'=>'listorder ASC','limit'=>'6',));}?>
+
+                        <?php $n=1; if(is_array($data)) foreach($data AS $key => $val) { ?>
+                        <li><a href="<?php echo $val['url'];?>"><?php echo $val['title'];?></a></li>
+                        <?php $n++;}unset($n); ?>
+
+                    <?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
 
                 </ul>
             </div>
             <div class="search">
-                <form class="fix">
-                    <input type="text" name="" class="text" placeholder="请输入搜索内容">
-                    <input type="submit" name="" value="搜索" class="submit">
-                    <img src="images/sousu.png">
+                <form class="fix" method="get" id="form" action="<?php echo APP_PATH;?>index.php?m=search&c=index&a=init&typeid=0&siteid=1&q=" onsubmit="return false">
+                    <input type="text" name="q" class="text" placeholder="请输入搜索内容" >
+                    <input type="submit" name="" value="搜索" class="submit" id="search">
+                    <img src="/statics/heheng/images/sousu.png">
                 </form>
             </div>
        </div>
     </div>
+<script>
+
+    $('[name=q]').keydown(function(event){
+        if(event.keyCode ==13) {
+
+            $('#search').click();
+        }
+    })
+    $('#search').click(function () {
+
+        var q = $('[name=q]').val();
+
+        if(!q){
+
+            alert('请输入关键词');
+
+            return
+
+        }
+
+        var url = $('#form').attr('action');
+
+
+        url = url+q;
+
+
+        window.location.href=url;
+
+    })
+
+</script>
     <script type="text/javascript">
         jQuery(".notice").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"top",autoPlay:true,vis:5});
     </script>
@@ -24,41 +61,31 @@
         <div class="index_schemeTop">
             <h3>解决方案</h3>
             <i></i>
-            <p>公司本着“以客户为中心”的经营理念， “诚信、平等”的待人原则，热情接待客户 、真情服务客户，实现客户利益和价值的最大化。</p>
+            <p><?php echo $CATEGORYS['17']['sub_title'];?></p>
         </div>
         <div class="index_schemeBom">
             <div class="hd">
-                <a class="next"><img src="images/fanganz.png"></a>
+                <a class="next"><img src="/statics/heheng/images/fanganz.png"></a>
                 <ul></ul>
-                <a class="prev"><img src="images/fangany.png"></a>
+                <a class="prev"><img src="/statics/heheng/images/fangany.png"></a>
             </div>
             <div class="bd">
                 <ul class="picList fix">
+                    <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=e4248587a91cb3b6b545166a545de53c&action=category&catid=17&num=10&siteid=%24siteid&order=listorder+ASC\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">修改</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'category')) {$data = $content_tag->category(array('catid'=>'17','siteid'=>$siteid,'order'=>'listorder ASC','limit'=>'10',));}?>
+                    <?php $n=1;if(is_array($data)) foreach($data AS $v) { ?>
                     <li>
-                        <a href="">
-                           <img src="images/fangan.jpg">
-                           <b>数据库安全</b>
-                           <p>高速铁路信号控制平台安全型计算机联锁（VPI）系统要求计算机设备具有...</p>
+                        <a href="<?php echo $v['url'];?>">
+                           <img src="<?php echo $v['image'];?>">
+                           <b><?php echo $v['catname'];?></b>
+                           <p><?php echo $v['description'];?></p>
                         </a>
                     </li>
-                    <li>
-                        <a href="">
-                           <img src="images/fangan.jpg">
-                           <b>数据库安全</b>
-                           <p>高速铁路信号控制平台安全型计算机联锁（VPI）系统要求计算机设备具有...</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                           <img src="images/fangan.jpg">
-                           <b>数据库安全</b>
-                           <p>高速铁路信号控制平台安全型计算机联锁（VPI）系统要求计算机设备具有...</p>
-                        </a>
-                    </li>          
+                    <?php $n++;}unset($n); ?>
+                    <?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
                 </ul>
             </div>
         </div>
-         <a href="solution.html" class="more">
+         <a href="<?php echo $CATEGORYS['17']['url'];?>" class="more">
              MORE  +
          </a>
         <script type="text/javascript">    
@@ -69,44 +96,23 @@
         <div class="index_superiority">
             <div class="w1200">
                 <div class="index_superiorityTop">
-                    <h3>合恒优势</h3>
+                    <h3><?php echo $CATEGORYS['151']['catname'];?></h3>
                     <i></i>
-                    <p>公司本着“以客户为中心”的经营理念， “诚信、平等”的待人原则，热情接待客户 、真情服务客户，实现客户利益和价值的最大化。</p>
+                    <p><?php echo $CATEGORYS['151']['sub_title'];?></p>
                 </div>
                 <div class="index_superiorityBom">
                     <ul>
-                        <li>
-                            <a href="newsxq.html">
-                                <em>
-                                    <img src="images/yous1.png">
-                                    <b>7 x 24小时本地化服务</b>
-                                </em>
-                            </a>
-                        </li>
+                        <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=5c8ce5892ad2b61fe7e1a005b51052d4&action=lists&catid=151&num=4&order=listorder+ASC%2Cinputtime+desc&page=%24page\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">修改</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'lists')) {$pagesize = 4;$page = intval($page) ? intval($page) : 1;if($page<=0){$page=1;}$offset = ($page - 1) * $pagesize;$content_total = $content_tag->count(array('catid'=>'151','order'=>'listorder ASC,inputtime desc','limit'=>$offset.",".$pagesize,'action'=>'lists',));$pages = pages($content_total, $page, $pagesize, $urlrule);$data = $content_tag->lists(array('catid'=>'151','order'=>'listorder ASC,inputtime desc','limit'=>$offset.",".$pagesize,'action'=>'lists',));}?>
+                        <?php $n=1;if(is_array($data)) foreach($data AS $r) { ?>
                          <li>
-                             <a href="newsxq.html">
+                             <a href="javascript:">
                                  <em>
-                                     <img src="images/yous2.png">
-                                     <b>领先的技术方案整合能力</b>
+                                     <img src="<?php echo $r['thumb'];?>">
+                                     <b><?php echo $r['title'];?></b>
                                  </em>
                              </a>
                          </li>
-                         <li>
-                             <a href="newsxq.html">
-                                 <em>
-                                     <img src="images/yous3.png">
-                                     <b>独特的定制化安全服务</b>
-                                 </em>
-                             </a>
-                         </li>
-                         <li>
-                             <a href="newsxq.html">
-                                 <em>
-                                     <img src="images/yous4.png">
-                                     <b>丰富的行业运维经验</b>
-                                 </em>
-                             </a>
-                         </li>
+                        <?php $n++;}unset($n); ?>
                     </ul>
                 </div>
             </div>
@@ -115,21 +121,20 @@
     <div class="index_aboutBox">
         <div class="w1200">
             <div class="index_aboutTop">
-                <h3>关于合恒</h3>
+                <h3><?php echo $CATEGORYS['126']['catname'];?></h3>
                 <i></i>
-                <p>公司本着“以客户为中心”的经营理念， “诚信、平等”的待人原则，热情接待客户 、真情服务客户，实现客户利益和价值的最大化。</p>
+                <p><?php echo $CATEGORYS['126']['sub_title'];?></p>
             </div>
             <div class="index_about">
                 <div class="index_aboutleft">
-                    <img src="images/guany.jpg">
+                    <img src="<?php echo $CATEGORYS['126']['image'];?>">
                 </div>
                 <div class="index_aboutright">
                     <h3>合恒科技(北京)有限公司</h3>
-                    <p>hh合恒科技（北京）有限公司成立于2009年，是专业的安 全可视化运维解决方案提供商。公司面向行 业及大型企事业客户，围绕中大型数据中心，在整合信息安全技术、运维经验以及业界顶尖的相关产品的   基础上，向客户提供专业的安全可视化运维解决方案及增值服务。</p>
-                    <p>hhhh公司自创建以来一直秉承“合则兴，信则恒”的合作 及服务理念，目前已成为了众多行业及大型企 事业客户的全面信息安全合作伙伴。公司拥有自主知识产权的“Netinside合恒优维应用 性能管理系统”广 泛应用于金融，企业及政府客户。同时，合恒科技与国内外顶尖信息安全厂商缔结了紧密的合作关系，是Check Point, Firemon,Solarwinds,Imperva,Paloalto Network, A10 Networks，Rapid7, 绿盟科技,深信服等公司的核心代理商及专业服务 提供商。</p>
+                    <?php echo $CATEGORYS['126']['description'];?>
                 </div>
             </div>
-            <a href="solution.html" class="more">
+            <a href="<?php echo $CATEGORYS['146']['url'];?>" class="more">
                  MORE  +
             </a>
          </div>
