@@ -1,0 +1,49 @@
+<div class="w1200">
+    <div class="footer fix">
+        <div class="w1200">
+            <div class="footer_top">
+                <span>友情链接：</span>
+                {pc:link action="type_list" siteid="$siteid" order="listorder DESC" num="10" return="dat"}
+                {loop $dat $v}
+                <a href="{$v[url]}">{$v[name]}</a>
+                {/loop}
+            </div>
+            <div class="footer_main fix">
+                <div class="footer_mian1">
+                    <img src="{$config[thumb]}">
+                </div>
+                <div class="footer_mian2">
+                    <ul>
+                        <li class="fix">
+                            <img src="/statics/heheng/images/footer1.png">
+                            <p>{$config[tel]}</p>
+                        </li>
+                        <li class="fix">
+                            <img src="/statics/heheng/images/footer2.png">
+                            <p>{$config[QQ]}</p>
+                        </li>
+                        <li class="fix">
+                            <img src="/statics/heheng/images/footer3.png">
+                            <p>{$config[email]}</p>
+                        </li>
+                        <li class="fix">
+                            <img src="/statics/heheng/images/footer4.png">
+                            <p>{$config[addr]}</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer_mian3">
+                    <img src="{$config[qrcode1]}">
+                    <p>微信公众号</p>
+                </div>
+            </div>
+            <div class="footer_bom">
+                <div class="w1200 fix">
+                    <p>{$config[bottom]}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

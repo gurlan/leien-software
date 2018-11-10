@@ -1,0 +1,12 @@
+<div class="public_nav le">
+    <ul>
+        <li><em><b>{$CATEGORYS[$cat][catname]} </b>/ {$CATEGORYS[$cat][catdir]}</em></li>
+        {pc:content action="category" catid="$cat" num="10" siteid="$siteid" order="listorder ASC"}
+        {loop $data $k=>$r}
+        <li {if $k==$catid} class="on"{/if}>
+        <a href="{$r[url]}">{$r[catname]}</a>
+        </li>
+        {/loop}
+        {/pc}
+    </ul>
+</div>

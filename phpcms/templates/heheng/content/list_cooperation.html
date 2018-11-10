@@ -1,0 +1,38 @@
+{template "content","head"}
+{template "content","position"}
+<script type="text/javascript" src="/statics/heheng/js/zoom.js"></script>
+
+<div class="public w1200 fix">
+    {template "content","nav"}
+    <div class="cooperation public_right rt">
+        <ul class="cooperationul fix">
+            {pc:content action="lists" catid="$catid" num="9" order="listorder ASC,inputtime desc" page="$page"}
+            {php $i=1}
+            {loop $data $r}
+            <li class="fix {if $i%3==1}one{/if}">
+                <em>
+                    <i><img src="{$r[thumb]}" class="smallimg"></i>
+                    <span><img src="/statics/heheng/images/cooperation.png"></span>
+                </em>
+                <p>{$r[title]}</p>
+            </li>
+            {php $i++}
+            {/loop}
+        </ul>
+        <img src="" alt="" class="bigimg">
+        <div class="mask">
+        </div>
+        <script>
+            $(function () {
+                var obj = new zoom('mask', 'bigimg', 'smallimg');
+                obj.init();
+            });
+        </script>
+        <div class="link">
+            <ul class="fix">
+                {$pages}
+            </ul>
+        </div>
+    </div>
+</div>
+{template "content","foot"}

@@ -1,0 +1,33 @@
+{template "content","head"}
+{template "content","position"}
+    <div class="public w1200 fix">
+        {template "content","nav"}
+        <div class="recruit public_right rt">
+            <ul class="recruitul fix">
+                {pc:content action="lists" catid="$catid" num="9" moreinfo="1" order="listorder ASC,inputtime desc" page="$page"}
+
+                <li class="fix">
+                    <p>招聘职位</p>
+                    <span>最低学历</span>
+                    <b>工作经验</b>
+                    <i>薪资</i>
+                    <em>详情</em>
+                </li>
+                {loop $data $r}
+                <li class="fix">
+                    <p>{$r[title]}</p>
+                    <span>{$r[xueli]}</span>
+                    <b>{$r[jingyan]}</b>
+                    <i>{$r[xinzi]}</i>
+                    <a href="{$r[url]}">立即查看</a>
+                </li>
+                {/loop}
+            </ul>
+            <div class="link">
+                <ul class="fix">
+                     {$pages}
+                </ul> 
+            </div>
+        </div>
+    </div>
+{template "content","foot"}

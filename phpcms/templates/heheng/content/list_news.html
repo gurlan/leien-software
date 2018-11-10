@@ -1,0 +1,38 @@
+{template "content","head"}
+{template "content","position"}
+
+    <div class="public w1200 fix">
+        <div class="public_nav le">
+            <ul>
+                <li><em><b>{$CATEGORYS[$catid][catname]} </b>/ NEWS</em></li>
+                <li><a href="{$CATEGORYS[$catid][url]}">{$CATEGORYS[$catid][catname]}</a></li>
+            </ul>
+        </div>
+        <div class="news public_right rt">
+            <ul class="newsul fix">
+                {pc:content action="lists" catid="$catid" num="5" order="listorder ASC,inputtime desc" page="$page"}
+                {loop $data $r}
+                <li>
+                    <a href="{$r[url]}">
+                       <div class="news_left le">
+                            <img src="{$r[thumb]}">
+                       </div>
+                       <div class="news_right rt">
+                           <h3>{$r[title]}</h3>
+                           <p>
+                               {$r[description]}
+                           </p>
+                           <i>{date("Y-m-d  H:i",$r[inputtime])}</i>
+                       </div>
+                    </a>
+                </li>
+                {/loop}
+            </ul>
+            <div class="link">
+                <ul class="fix">
+                    {$pages}
+                </ul>
+            </div>
+        </div>
+    </div>
+{template "content","foot"}
